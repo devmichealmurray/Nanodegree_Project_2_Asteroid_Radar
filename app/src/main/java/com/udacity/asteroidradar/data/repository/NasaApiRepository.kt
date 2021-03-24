@@ -7,13 +7,14 @@ import retrofit2.Call
 import retrofit2.Response
 
 private const val API_KEY = "ErHNqQmYRrD8rIjUI2a86R8j2igPtDKN920nMhLM"
+private const val TAG = "NasaApiRepository"
 
 object NasaApiRepository {
 
     fun getAsteroids(
         startDate: String,
         endDate: String
-    ) : Call<String> {
+    ): Call<String> {
         return NasaApiService.apiClient.nasaApiCall(
             startDate,
             endDate,
@@ -21,7 +22,8 @@ object NasaApiRepository {
         )
     }
 
-    suspend fun getPictureOfTheDay() : Response<PictureOfDayDto> {
+    suspend fun getPictureOfTheDay(): Response<PictureOfDayDto> {
         return NasaPictureApiService.apiClient.getPictureOfDay(apiKey = API_KEY)
     }
+
 }

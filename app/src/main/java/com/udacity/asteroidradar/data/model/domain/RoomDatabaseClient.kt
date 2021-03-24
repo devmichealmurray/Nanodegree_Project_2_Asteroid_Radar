@@ -10,7 +10,7 @@ import com.udacity.asteroidradar.data.model.entity.AsteroidEntity
 import com.udacity.asteroidradar.data.model.entity.PictureOfDayEntity
 
 
-const val DATABASE_SCHEMA_VERSION = 3
+const val DATABASE_SCHEMA_VERSION = 5
 const val DATABASE_NAME = "nasa_db"
 
 @Database(

@@ -28,5 +28,18 @@
     <string name="displays_nasa_photo_of_the_day">Displays NASA Photo Of The Day</string>
     <string name="error_alert_title">Error!</string>
     <string name="alert_positive_button">Okay</string>
+    <string name="header_that_reads_image_of_the_day">Header that reads Image Of The Day</string>
+    <string name="image_that_shows_an_asteroid_representing_if_this_asteroid_is_safe_or_hazardous">Image that shows an asteroid representing if this asteroid is safe or hazardous</string>
+    <string name="header_that_reads_close_approach_date">Header that reads close approach date</string>
+    <string name="the_close_approach_date_of_this_asteroid">The close approach date of this asteroid</string>
+    <string name="header_that_reads_absolute_magnitude">Header that reads absolute magnitude</string>
+    <string name="the_absolute_magnitude_of_this_asteroid">The absolute magnitude of this asteroid</string>
+    <string name="clickable_icon_button_that_displays_a_dialog_box_defining_astronomical_unit">Clickable icon button that displays a dialog box defining Astronomical Unit</string>
+    <string name="header_that_reads_estimated_diameter">Header that reads Estimated Diameter</string>
+    <string name="the_estimated_diameter_of_this_asteroid">The estimated diameter of this asteroid</string>
+    <string name="header_that_reads_relative_velocity">Header that reads Relative Velocity</string>
+    <string name="the_relative_velocity_of_this_asteroid">The relative velocity of this asteroid</string>
+    <string name="header_that_reads_distance_from_earth">Header that reads Distance From Earth</string>
+    <string name="this_asteroids_distance_from_earth">This asteroids distance from earth</string>
 
 </resources>

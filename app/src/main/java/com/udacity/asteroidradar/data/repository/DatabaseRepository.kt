@@ -18,6 +18,9 @@ class DatabaseRepository(
     fun getAsteroids() =
         asteroidDataSource.getAsteroids()
 
+    suspend fun getAsteroidById(id: Long) =
+        asteroidDataSource.getAsteroidById(id)
+
     suspend fun deleteAllAsteroids() =
         asteroidDataSource.deleteAllAsteroids()
 

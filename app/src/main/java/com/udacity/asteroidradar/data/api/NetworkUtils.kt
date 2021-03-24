@@ -51,6 +51,7 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<AsteroidEntity> 
 
 fun parsePicture(result: Response<PictureOfDayDto>) : PictureOfDayEntity {
     return PictureOfDayEntity(
+        dateMillis = dateStringToMillis(result.body()?.date),
         mediaType = result.body()?.mediaType,
         title = result.body()?.title,
         url = result.body()?.url
@@ -72,7 +73,7 @@ fun getNextSevenDaysFormattedDates(): ArrayList<String> {
 }
 
 @SuppressLint("SimpleDateFormat")
-private fun dateStringToMillis(dateString: String) : Long {
+private fun dateStringToMillis(dateString: String?) : Long {
     val sdf = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
     return sdf.parse(dateString).time
 }

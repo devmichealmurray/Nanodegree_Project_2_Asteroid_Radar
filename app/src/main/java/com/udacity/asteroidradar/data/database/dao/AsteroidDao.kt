@@ -16,6 +16,9 @@ interface AsteroidDao {
     @Query("SELECT * FROM asteroids")
     fun getAsteroids(): Flow<List<AsteroidEntity>>
 
+    @Query("SELECT * FROM asteroids WHERE uid = :id")
+    suspend fun getAsteroidById(id: Long): AsteroidEntity
+
     @Query("DELETE FROM asteroids")
     suspend fun deleteAllAsteroids()
 
