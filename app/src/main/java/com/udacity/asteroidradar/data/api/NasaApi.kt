@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.data.api
 
-import com.udacity.asteroidradar.data.model.dto.AsteroidDto
+import com.udacity.asteroidradar.data.model.dto.PictureOfDayDto
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,10 +11,15 @@ import retrofit2.http.Query
 interface NasaApi {
 
     @GET("neo/rest/v1/feed")
-    suspend fun NasaApiCall(
+    fun nasaApiCall(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
         @Query("api_key") apiKey: String
-    ): Response<AsteroidDto>
+    ): Call<String>
 
+
+    @GET("planetary/apod")
+    suspend fun getPictureOfDay(
+        @Query("api_key") apiKey: String
+    ): Response<PictureOfDayDto>
 }

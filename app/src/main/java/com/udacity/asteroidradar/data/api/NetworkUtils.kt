@@ -1,19 +1,24 @@
 package com.udacity.asteroidradar.data.api
 
-import com.udacity.asteroidradar.data.model.domain.Asteroid
+import android.annotation.SuppressLint
+import com.udacity.asteroidradar.data.model.dto.PictureOfDayDto
+import com.udacity.asteroidradar.data.model.entity.AsteroidEntity
+import com.udacity.asteroidradar.data.model.entity.PictureOfDayEntity
 import com.udacity.asteroidradar.util.Constants
 import org.json.JSONObject
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
+fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<AsteroidEntity> {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
 
-    val asteroidList = ArrayList<Asteroid>()
+    val asteroidList = ArrayList<AsteroidEntity>()
 
     val nextSevenDaysFormattedDates = getNextSevenDaysFormattedDates()
     for (formattedDate in nextSevenDaysFormattedDates) {
+
         val dateAsteroidJsonArray = nearEarthObjectsJson.getJSONArray(formattedDate)
 
         for (i in 0 until dateAsteroidJsonArray.length()) {
@@ -32,9 +37,11 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
                 .getDouble("astronomical")
             val isPotentiallyHazardous = asteroidJson
                 .getBoolean("is_potentially_hazardous_asteroid")
+            val date = dateStringToMillis(formattedDate)
 
-            val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
-                estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
+
+            val asteroid = AsteroidEntity(id, codename, formattedDate, absoluteMagnitude,
+                estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous, date)
             asteroidList.add(asteroid)
         }
     }
@@ -42,7 +49,15 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     return asteroidList
 }
 
-private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
+fun parsePicture(result: Response<PictureOfDayDto>) : PictureOfDayEntity {
+    return PictureOfDayEntity(
+        mediaType = result.body()?.mediaType,
+        title = result.body()?.title,
+        url = result.body()?.url
+    )
+}
+
+fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     val formattedDateList = ArrayList<String>()
 
     val calendar = Calendar.getInstance()
@@ -54,4 +69,10 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     }
 
     return formattedDateList
+}
+
+@SuppressLint("SimpleDateFormat")
+private fun dateStringToMillis(dateString: String) : Long {
+    val sdf = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return sdf.parse(dateString).time
 }

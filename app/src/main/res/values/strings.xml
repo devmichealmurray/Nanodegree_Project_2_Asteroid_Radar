@@ -19,4 +19,14 @@
     <string name="not_hazardous_asteroid_image">Not hazardous asteroid image</string>
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
     <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
+
+
+    <!-- Content Descriptions -->
+    <string name="name_of_this_asteroid">Name of this asteroid</string>
+    <string name="date_of_approach">Date of approach</string>
+    <string name="dangerous_emoji">Emoji the represents if this asteroid is dangerous or normal</string>
+    <string name="displays_nasa_photo_of_the_day">Displays NASA Photo Of The Day</string>
+    <string name="error_alert_title">Error!</string>
+    <string name="alert_positive_button">Okay</string>
+
 </resources>
